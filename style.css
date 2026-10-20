@@ -253,6 +253,166 @@ h1 { margin: 0; font-size: clamp(28px, 3.4vw, 42px); line-height: 1.08; letter-s
 @keyframes envelope-arrival { from { opacity: 0; transform: translateY(14px) rotate(-12deg); } to { opacity: 1; transform: translateY(0) rotate(-7deg); } }
 @keyframes letter-open { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes wish-arrival { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+/* Shared Banner for Recipients */
+.shared-banner {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto 20px;
+  padding: 12px 18px;
+  background: #fff0f5;
+  border: 1px solid #ecd3db;
+  border-radius: 28px;
+  box-shadow: 0 4px 16px #76364d12;
+  animation: wish-arrival .5s ease both;
+}
+.shared-banner-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--ink);
+}
+.shared-banner-icon { font-size: 18px; }
+.shared-banner-link {
+  display: inline-block;
+  padding: 4px 14px;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 16px;
+  font-size: 12px;
+  text-decoration: none;
+  transition: opacity .2s;
+}
+.shared-banner-link:hover { opacity: .85; }
+
+/* Share Dialog */
+.share-dialog {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: min(92vw, 480px);
+  max-height: min(90vh, 700px);
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: 0 24px 60px #76364d25, 0 4px 12px #76364d10;
+  overflow: hidden;
+  z-index: 20;
+}
+.share-dialog::backdrop {
+  background: rgba(118, 54, 77, .3);
+  backdrop-filter: blur(4px);
+}
+.share-dialog-content {
+  padding: 26px 24px 22px;
+  overflow-y: auto;
+  max-height: inherit;
+  position: relative;
+}
+.share-title {
+  font-family: "Palatino Linotype", Georgia, serif;
+  font-size: 24px;
+  margin: 0 0 8px;
+  color: var(--ink);
+}
+.share-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0 0 16px;
+}
+.share-summary {
+  background: var(--blush);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin: 0 0 16px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.summary-item + .summary-item { margin-top: 4px; }
+
+.share-action-area { text-align: center; margin-bottom: 12px; }
+.share-action-area .primary-button { width: 100%; padding: 12px 20px; font-size: 14px; }
+.share-status { font-size: 12px; color: var(--muted); min-height: 20px; margin: 8px 0 0; }
+
+.share-result-area {
+  margin-top: 14px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--line);
+  animation: wish-arrival .3s ease both;
+}
+.share-result-label { display: block; font-size: 12px; font-weight: 600; margin-bottom: 6px; }
+.share-input-group {
+  display: flex;
+  gap: 8px;
+}
+.share-input-group input {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  font-size: 12px;
+  background: #fdf8fa;
+  color: var(--ink);
+}
+.copy-feedback {
+  font-size: 12px;
+  color: #2e7d32;
+  margin: 6px 0 12px;
+  min-height: 18px;
+}
+
+.share-quick-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.social-share-btn {
+  flex: 1;
+  min-width: 90px;
+  text-align: center;
+  padding: 9px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity .2s;
+}
+.social-share-btn.zalo { background: #0068ff; color: #fff; }
+.social-share-btn.messenger { background: #0084ff; color: #fff; }
+.social-share-btn.preview { background: var(--paper); color: var(--ink); border: 1px solid var(--line); }
+.social-share-btn:hover { opacity: .88; }
+
+.native-share-btn {
+  width: 100%;
+  margin-bottom: 16px;
+  background: #b85575;
+  border-color: #b85575;
+}
+
+.qr-container {
+  text-align: center;
+  padding-top: 10px;
+}
+.qr-caption { font-size: 11px; color: var(--muted); margin: 0 0 8px; }
+.share-qr-img {
+  display: block;
+  margin: 0 auto;
+  border: 4px solid var(--paper);
+  border-radius: 8px;
+  box-shadow: 0 4px 14px #76364d15;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }

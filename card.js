@@ -154,6 +154,18 @@
     document.getElementById('cardSender').textContent = greeting.sender;
   }
 
+  window.flowerGreeting = {
+    get: () => ({ recipient: greeting.recipient, message: greeting.message, sender: greeting.sender }),
+    set: (newGreeting) => {
+      greeting = {
+        recipient: typeof newGreeting.recipient === 'string' ? newGreeting.recipient : greeting.recipient,
+        message: typeof newGreeting.message === 'string' ? newGreeting.message : greeting.message,
+        sender: typeof newGreeting.sender === 'string' ? newGreeting.sender : greeting.sender
+      };
+      renderGreeting();
+    }
+  };
+
   function showReading() {
     reading.hidden = false;
     editor.hidden = true;

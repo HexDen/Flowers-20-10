@@ -338,5 +338,43 @@
     updateRestoreButton();
   }
 
+  window.flowerAlbum = {
+    getCards: () => {
+      const cards = [...photosContainer.querySelectorAll('.album-card')];
+      return cards.map(c => {
+        const img = c.querySelector('img');
+        const ded = c.querySelector('.portrait-dedication');
+        const dt = c.querySelector('.portrait-date');
+        return {
+          src: img ? img.getAttribute('src') : './assets/portrait-placeholder.webp',
+          dedication: ded ? ded.textContent : '',
+          date: dt ? dt.textContent : '',
+          alt: img ? img.getAttribute('alt') : 'Ảnh kỷ niệm'
+        };
+      });
+    },
+    setCards: async (cardsData) => {
+      photosContainer.innerHTML = '';
+      if (!cardsData || cardsData.length === 0) {
+        checkEmptyState();
+        return;
+      }
+      const cards = cardsData.map((item, idx) => {
+        const c = createCardElement({
+          key: `shared_${idx}`,
+          original: item.src || item.url || './assets/portrait-placeholder.webp',
+          dedication: item.dedication || item.ded || '',
+          date: item.date || '',
+          alt: item.alt || 'Ảnh kỷ niệm'
+        }, idx);
+        photosContainer.appendChild(c);
+        return c;
+      });
+      await Promise.allSettled(cards.map((c, i) => bindCard(c, `shared_${i}`, cardsData[i].src || cardsData[i].url)));
+      checkEmptyState();
+      updateRestoreButton();
+    }
+  };
+
   window.albumPhotosReady = initAlbum();
 })();

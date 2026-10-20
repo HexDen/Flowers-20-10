@@ -62,6 +62,20 @@ Khung ảnh dùng tỉ lệ 3:4 và tự cắt ảnh vừa khung. Có thể ch�
 
 Ảnh mẫu `assets/portrait-placeholder.webp` (768 × 1024) được tạo bằng công cụ imagegen tích hợp; prompt cuối nằm trong `assets/portrait-prompt.txt`.
 
+## Tạo link chia sẻ riêng cho người thân
+
+Bạn và bạn bè có thể tự tạo thiệp và album ảnh riêng cho từng người thân, sau đó tạo một **đường link riêng biệt** để gửi tặng:
+
+1. Bấm **Viết lời chúc riêng** trong thiệp để nhập tên người nhận, lời chúc và người gửi.
+2. Bấm **Thay ảnh** trong album kỷ niệm để tải ảnh kỷ niệm của người thân lên (có thể xóa bớt hoặc thêm khung ảnh).
+3. Bấm **Chia sẻ link riêng** (trong thiệp hoặc ở album):
+   - Bấm **Tạo đường link riêng ♡**: hoàn toàn tự động 100%, không cần đăng ký hay cài đặt kỹ thuật gì; hệ thống tự động xử lý và nén toàn bộ thông điệp thành đường link riêng ngắn gọn.
+   - Bấm **Sao chép** để copy link và gửi qua Zalo, Facebook Messenger, SMS,...
+   - Hoặc chia sẻ nhanh qua mã **QR Code** tự động tạo để người thân quét bằng điện thoại.
+4. Khi người thân mở đường link đó:
+   - Thiệp chúc mừng và album ảnh hiển thị chính xác nội dung và hình ảnh mà bạn đã chuẩn bị riêng cho họ!
+   - Kèm biểu ngữ chào đón ấm áp dành riêng cho người nhận.
+
 ## Các tệp
 
 - `index.html`: bố cục, Canvas, thiệp và form cá nhân hóa.
@@ -69,6 +83,7 @@ Khung ảnh dùng tỉ lệ 3:4 và tự cắt ảnh vừa khung. Có thể ch�
 - `script.js`: vẽ bó hoa, hiệu ứng nở hoa, parallax, cánh hoa bay và tương tác từng bông.
 - `card.js`: mở/đóng thiệp, chuyển bố cục, lời chúc và lưu nội dung cá nhân hóa.
 - `album.js`: thay, gỡ, xóa khung ảnh, thêm khung ảnh mới, lưu trên trình duyệt và khôi phục album.
+- `share.js`: tạo link chia sẻ riêng, nén/giải mã dữ liệu, tải ảnh lên đám mây ImgBB, mã QR và giao diện người nhận.
 - `assets/portrait-placeholder.webp`: ảnh mẫu có thể thay thế.
 - `tests/layout.cjs`: kiểm tra hồi quy bố cục trên 11 kích thước màn hình, hoa căn giữa, album ẩn/hiện và xòe/gấp, thiệp dài và các tương tác. Chạy `node tests/layout.cjs` trong môi trường có Playwright (hoặc đặt `NODE_PATH` đến thư mục chứa Playwright đã cài).
 - `tests/album.cjs`: kiểm tra chọn ảnh, thu nhỏ, lưu và khôi phục riêng từng ảnh, tải lại trang, tệp không hợp lệ, bộ nhớ không khả dụng và bố cục chỉnh ảnh trên điện thoại. Chạy `node tests/album.cjs` với Playwright.
