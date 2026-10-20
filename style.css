@@ -178,11 +178,12 @@ h1 { margin: 0; font-size: clamp(28px, 3.4vw, 42px); line-height: 1.08; letter-s
 .album-heading { margin-bottom: 26px; }
 .album-note { color: var(--muted); font-size: 12px; line-height: 1.7; margin: 0 0 12px; }
 #albumTitle { font-size: clamp(26px, 3vw, 34px); line-height: 1.25; margin: 0 0 8px; letter-spacing: -.5px; }
-.album-photos { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; padding: 18px 18px 14px; }
-.album-card { grid-area: 1 / 1; width: min(100%, 230px); max-width: none; transform-origin: center; }
-.album-card:nth-child(1) { z-index: 3; transform: rotate(-3deg); }
-.album-card:nth-child(2) { z-index: 2; transform: translate(12px, -6px) rotate(7deg); }
-.album-card:nth-child(3) { z-index: 1; transform: translate(-12px, -10px) rotate(-9deg); }
+.album-photos { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; padding: 18px clamp(8px, 2vw, 18px) 14px; justify-items: center; }
+.album-card { grid-area: 1 / 1; width: min(100%, 230px); max-width: none; transform-origin: center; justify-self: center; }
+.album-card:nth-child(4n + 1) { z-index: 4; transform: rotate(-3deg); }
+.album-card:nth-child(4n + 2) { z-index: 3; transform: translate(12px, -6px) rotate(7deg); }
+.album-card:nth-child(4n + 3) { z-index: 2; transform: translate(-12px, -10px) rotate(-9deg); }
+.album-card:nth-child(4n + 4) { z-index: 1; transform: translate(6px, 8px) rotate(5deg); }
 .album-card .portrait-dedication { font-size: 17px; }
 .album-card figcaption { padding: 16px 4px 18px; }
 .album-card .portrait-date { margin-top: 8px; }
@@ -191,12 +192,28 @@ h1 { margin: 0; font-size: clamp(28px, 3.4vw, 42px); line-height: 1.08; letter-s
 .photo-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 0 4px; padding: 0 0 8px; }
 .photo-actions .text-button { min-height: 44px; padding: 10px 6px; }
 .photo-actions button:disabled { opacity: .5; cursor: default; }
+.photo-actions .delete-card { color: #b5495e; }
+.photo-actions .delete-card:hover, .photo-actions .delete-card:focus-visible { color: #8c2539; }
 .album-card[aria-busy="true"] .portrait-photo { opacity: .65; }
-.memory-album.is-spread .album-photos { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.memory-album.is-spread .album-card { grid-area: auto; transform: rotate(var(--photo-angle)); animation: photo-unfold .65s cubic-bezier(.2,.8,.2,1) both; }
-.memory-album.is-spread .album-card:nth-child(1) { --photo-angle: -4deg; }
-.memory-album.is-spread .album-card:nth-child(2) { --photo-angle: 2deg; animation-delay: .13s; }
-.memory-album.is-spread .album-card:nth-child(3) { --photo-angle: -2deg; animation-delay: .26s; }
+.memory-album.is-spread .album-photos {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 28px;
+}
+.memory-album.is-spread .album-card {
+  grid-area: auto;
+  width: min(100%, 230px);
+  transform: rotate(var(--photo-angle));
+  animation: photo-unfold .65s cubic-bezier(.2,.8,.2,1) both;
+}
+.memory-album.is-spread .album-card:nth-child(4n + 1) { --photo-angle: -4deg; }
+.memory-album.is-spread .album-card:nth-child(4n + 2) { --photo-angle: 2deg; animation-delay: .13s; }
+.memory-album.is-spread .album-card:nth-child(4n + 3) { --photo-angle: -2deg; animation-delay: .26s; }
+.memory-album.is-spread .album-card:nth-child(4n + 4) { --photo-angle: 3deg; animation-delay: .39s; }
+.album-empty { padding: 32px 16px; color: var(--muted); font-size: 14px; line-height: 1.8; text-align: center; width: 100%; }
+.empty-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 16px; margin-top: 10px; }
 .album-footnote { margin: 22px 0 0; color: var(--muted); font: italic 15px/1.7 Georgia, serif; }
 @keyframes photo-unfold {
   from { opacity: 0; transform: translateY(22px) rotate(0); }
@@ -230,7 +247,7 @@ h1 { margin: 0; font-size: clamp(28px, 3.4vw, 42px); line-height: 1.08; letter-s
   .letter-paper { padding: 18px 24px 10px; }
   .letter-fold { margin-left: -24px; margin-right: -24px; }
   #cardTitle { font-size: 29px; }
-  .memory-album.is-spread .album-photos { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .memory-album.is-spread .album-photos { gap: 32px; }
 }
 @keyframes bouquet-entrance { from { opacity: 0; transform: translateY(18px) scale(.92); } to { opacity: 1; transform: translateY(0) scale(1); } }
 @keyframes envelope-arrival { from { opacity: 0; transform: translateY(14px) rotate(-12deg); } to { opacity: 1; transform: translateY(0) rotate(-7deg); } }
